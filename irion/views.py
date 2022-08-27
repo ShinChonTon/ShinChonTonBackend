@@ -9,6 +9,10 @@ from .serializer import MeetingSerializer, UserSerializer, LocationSerializer
 from .models import Meeting, User, Location
 
 from .serializer import UserLoginSerializer, UserSerializer
+from .serializer import LocationSerializer
+
+from .models import Location
+from .serializer import LocationSerializer
 
 # Create your views here.
 
@@ -26,6 +30,13 @@ class LoginView(APIView):
         if serializer.is_valid():
             return Response({"message":"로그인 성공", 'data':serializer.data})
         return Response({"message":"로그인 실패", 'error':serializer.errors})
+
+
+class LocationView(APIView):
+    def get(self, request):
+        locations = Location.objects.all()
+        serializer = LocationSerializer(locations, many=True)
+        return Response(serializer.data)
 
 class  MeetingsAPI(APIView):  # 미팅 전체
     
