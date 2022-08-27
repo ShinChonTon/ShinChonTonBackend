@@ -35,3 +35,16 @@ class UserLoginSerializer(serializers.Serializer):
                 raise serializers.ValidationError()
             else:
                 return user
+
+class LocationSerializer(serializers.ModelSerializer):
+    class Meta:
+        model= Location
+        fields=['id','location1','location2','location3','location4','location5','location6']
+
+class MeetingSerializer(serializers.ModelSerializer):
+    author = UserSerializer(read_only=True)
+    location = LocationSerializer(read_only=True)
+    participant = UserSerializer(read_only=True)
+    class Meta:
+        model= Meeting
+        fields=['id','author','location','participant','name','body','max_people','plan_date','create_date','thema','age']
