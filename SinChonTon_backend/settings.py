@@ -27,7 +27,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
+AUTH_USER_MODEL = 'irion.User'
 # Application definition
 
 INSTALLED_APPS = [
@@ -116,7 +116,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'Aisa/Seoul'
+TIME_ZONE = 'Asia/Seoul'
 
 USE_I18N = True
 
