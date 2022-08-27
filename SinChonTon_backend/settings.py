@@ -118,7 +118,7 @@ LANGUAGE_CODE = 'en-us'
 
 AUTH_USER_MODEL = 'irion.User'
 
-TIME_ZONE = 'Aisa/Seoul'
+TIME_ZONE = 'Asia/Seoul'
 
 USE_I18N = True
 

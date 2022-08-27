@@ -6,7 +6,7 @@ from django.contrib.auth.models import AbstractUser
 class User(AbstractUser):
     id = models.CharField(max_length=15, unique=True, default='', primary_key=True)
     nickname = models.CharField(max_length=15, unique=True, default='')
-    birth = models.DateField()
+    birth = models.DateField(null=True)
 
     def __str__(self):
         return self.username
