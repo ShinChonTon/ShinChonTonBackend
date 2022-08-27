@@ -116,6 +116,8 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
+AUTH_USER_MODEL = 'irion.User'
+
 TIME_ZONE = 'Aisa/Seoul'
 
 USE_I18N = True

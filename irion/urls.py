@@ -1,10 +1,11 @@
 from xml.etree.ElementInclude import include
 from django.contrib import admin
 from django.urls import path
-from irion import urls
+from .views import LoginView, SignUpView
 
+app_name = 'irion'
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-
+    path('signup/', SignUpView.as_view()),
+    path('login/', LoginView.as_view()),
 ]
