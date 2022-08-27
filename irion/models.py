@@ -1,7 +1,6 @@
 from operator import mod
 from django.db import models
 from django.contrib.auth.models import AbstractUser
-from django.forms import CharField, DateField, ImageField, IntegerField
 from django.dispatch import receiver
 from django.db.models.signals import post_save
 
@@ -21,7 +20,6 @@ class User(AbstractUser):
     id = models.CharField(max_length=15, unique=True, default='', primary_key=True)
     nickname = models.CharField(max_length=15, unique=True, default='')
     birth = models.DateField(null=True)
-    
     def __str__(self):
         return self.username
 
@@ -55,6 +53,3 @@ class Meeting(models.Model):
  
     def __str__(self):
         return self.name
-    
-
-    

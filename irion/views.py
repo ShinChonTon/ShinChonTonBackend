@@ -8,12 +8,28 @@ from rest_framework.generics import get_object_or_404
 from .serializer import MeetingSerializer, UserSerializer, LocationSerializer
 from .models import Meeting, User, Location
 
-# Create your views here.
-
+from .serializer import UserLoginSerializer, UserSerializer
 from .serializer import LocationSerializer
 
 from .models import Location
 from .serializer import LocationSerializer
+
+# Create your views here.
+
+class SignUpView(APIView):
+    def post(self, request):
+        serializer=UserSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response({'message':'회원가입 성공', 'data':serializer.data})
+        return Response({'message':'회원가입 실패', 'error':serializer.errors})
+
+class LoginView(APIView):
+    def post(self, request):
+        serializer = UserLoginSerializer(data=request.data)
+        if serializer.is_valid():
+            return Response({"message":"로그인 성공", 'data':serializer.data})
+        return Response({"message":"로그인 실패", 'error':serializer.errors})
 
 
 class LocationView(APIView):
@@ -21,19 +37,6 @@ class LocationView(APIView):
         locations = Location.objects.all()
         serializer = LocationSerializer(locations, many=True)
         return Response(serializer.data)
-
-
-
-# @csrf_exempt
-# def location(request, pk):
-#     try:
-#         locations = Location.objects.get(pk=pk)
-#     except Location.DoesNotExist:
-#         return HttpResponse(status=404)
-#     if request.method == "GET":
-#         # locations = Location.objects.all()
-#         serializer = LocationSerializer(locations, many=True)
-#         return JsonResponse(serializer.data)
 
 class  MeetingsAPI(APIView):  # 미팅 전체
     
@@ -67,16 +70,3 @@ class  MeetingAPI(APIView):
         meeting=get_object_or_404(Meeting,id=meeting_id)
         meeting.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)  
-    
-    
-    # author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='meeting_author')
-    # location = models.ForeignKey(Location, related_name='meeting_location')
-    # participant = models.ManyToManyField(User,  related_name='meeting_participant', blank=True)
-    # name = models.CharField(max_length=300)
-    # max_people = models.IntegerField(null=True)
-    # plan_date = models.DateTimeField( blank= True)
-    # create_date = models.DateTimeField(auto_now_add= True)
-    # thema = models.CharField(blank= True) # 운동, 영화, 등등
-    # age = models.CharField(max_length=100) # 20대. 30대, 전연령
-    
-        
