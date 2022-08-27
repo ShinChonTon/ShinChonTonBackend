@@ -8,6 +8,15 @@ from django.db.models.signals import post_save
 
 # Create your models here.
 
+class Location(models.Model):
+    created = models.DateTimeField(auto_now_add=True)
+    si = models.CharField(max_length=10, default='')
+    gu = models.CharField(max_length=10, default='')
+    dong = models.CharField(max_length=10, default='')
+    detail_loc = models.TextField()
+    latitude = models.TextField()
+    longitude = models.TextField()
+
 class User(AbstractUser):
     id = models.CharField(max_length=15, unique=True, default='', primary_key=True)
     nickname = models.CharField(max_length=15, unique=True, default='')

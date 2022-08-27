@@ -7,10 +7,6 @@ class UserSerializer(serializers.ModelSerializer):
         model= User
         fields=['id','nickname','birth']
 
-class LocationSerializer(serializers.ModelSerializer):
-    class Meta:
-        model= Location
-        fields=['id','location1','location2','location3','location4','location5','location6']
 
 class MeetingSerializer(serializers.ModelSerializer):
     author = UserSerializer(read_only=True)
@@ -37,3 +33,9 @@ class MeetingSerializer(serializers.ModelSerializer):
 #     refresh_token = models.CharField(null=True, max_length=255)
 #     password = models.CharField(null=True, max_length=100)
     
+
+
+class LocationSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Location
+        fields = ['si', 'gu', 'dong', 'detail_loc', 'latitude', 'longitude']

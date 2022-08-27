@@ -10,6 +10,31 @@ from .models import Meeting, User, Location
 
 # Create your views here.
 
+from .serializer import LocationSerializer
+
+from .models import Location
+from .serializer import LocationSerializer
+
+
+class LocationView(APIView):
+    def get(self, request):
+        locations = Location.objects.all()
+        serializer = LocationSerializer(locations, many=True)
+        return Response(serializer.data)
+
+
+
+# @csrf_exempt
+# def location(request, pk):
+#     try:
+#         locations = Location.objects.get(pk=pk)
+#     except Location.DoesNotExist:
+#         return HttpResponse(status=404)
+#     if request.method == "GET":
+#         # locations = Location.objects.all()
+#         serializer = LocationSerializer(locations, many=True)
+#         return JsonResponse(serializer.data)
+
 class  MeetingsAPI(APIView):  # 미팅 전체
     
     def get(self,request):          # 미팅 정보가져오기
